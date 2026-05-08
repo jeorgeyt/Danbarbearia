@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DanBarbeiro Barbearia Urbana | Jamacaru CE</title>
+  <meta name="description" content="DanBarbeiro Barbearia urbana em Jamacaru. Cortes modernos, degrade, barba e muito mais. Agende online!">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Dan<span>Barbeiro</span></a>
+  <ul class="nav-links">
+    <li><a href="#promocoes-section" id="nav-promo" style="display:none;">Promoções</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#agendamento-wrap">Agendar</a></li>
+    <li><a href="#depoimentos">Reviews</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="admin.html" class="nav-cta" target="_blank">ADM</a></li>
+  </ul>
+</nav>
+
+<!-- PROMO BANNER -->
+<div id="promo-banner">
+  <div class="promo-banner-inner">
+    <span class="promo-banner-tag" id="promo-banner-tag">Veja¦ Promoção</span>
+    <span class="promo-banner-text" id="promo-banner-text">Promoção especial disponivel!</span>
+    <a href="#promocoes-section" class="promo-banner-btn">Ver oferta</a>
+    <button class="promo-banner-close" onclick="closeBanner()">âœ•</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="hero-tag fade-up">CE¦ 2026 Missão Velha/ Jamacaru</div>
+    <h1 class="fade-up delay-1">DAN<br><span class="gold">BAR</span>BEIRO</h1>
+    <p class="hero-sub fade-up delay-2">Cortes que definem estilo. Uma barbearia urbana onde cada detalhe Ã© feito com precisÃ£o e atitude.</p>
+    <div class="fade-up delay-3">
+      <a href="#agendamento-wrap" class="btn btn-primary">Agendar agora</a>
+      <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+    </div>
+    <div class="hero-stats fade-up delay-4">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Clientes</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Avaliação</div></div>
+      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Anos de experiência</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Promoções -->
+<div id="promocoes-section">
+  <section style="border:none;">
+    <div class="section-tag">Ações¦ Ofertas especiais</div>
+    <h2 class="section-title">PROMOÇÕES</h2>
+    <p class="section-sub">Aproveite nossas ofertas por tempo limitado.</p>
+    <div class="promos-grid" id="promos-grid"></div>
+  </section>
+</div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="section-tag">Veja¦ O que oferecemos</div>
+  <h2 class="section-title">SERVIÇOS</h2>
+  <p class="section-sub">Cada corte pensado para valorizar seu estilo. Qualidade sem compromisso.</p>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="section-tag">VEJA Nosso trabalho</div>
+  <h2 class="section-title">GALERIA</h2>
+  <p class="section-sub">Resultados que falam por si. Veja alguns dos nossos trabalhos mais recentes.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-large">
+      <img src="/Imagens/danbarber1.jpg" alt="Destaque" class="gallery-img">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Destaque</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/Imagens/degrade.jpg" alt="Degrade" class="gallery-img">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Degrade</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/Imagens/barba.png" alt="Barba" class="gallery-img">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Ver resultados</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/Imagens/danbarber.jpg" alt="Combo" class="gallery-img">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Combo</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="/Imagens/classico.jpg" alt="Clássico" class="gallery-img">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Ver corte</span></div>
+    </div>
+  </div>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem;">Veja alguns cortes com destaque para degrade, combo e o visual principal da barbearia.</p>
+</section>
+
+<!-- AGENDAMENTO -->
+<div id="agendamento-wrap" style="border-top:1px solid var(--border);">
+  <section style="max-width:1100px;margin:0 auto;border:none;padding-top:6rem;">
+    <div class="section-tag">Garanta seu horário</div>
+    <h2 class="section-title">AGENDAMENTO</h2>
+    <div class="booking-layout">
+      <div class="booking-info">
+        <h3>Venha nos visitar</h3>
+        <div class="info-item">
+          <div class="info-icon">&#128205</div>
+          <div><div class="info-item-label">Endereço</div><div class="info-item-value">Rua Exemplo, 123 Jamacaru, CE</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9200</div>
+          <div><div class="info-item-label">Horário</div><div class="info-item-value">Seg a Sab: 9h as 20h<br>Domingo: A combinar</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#128241</div>
+          <div><div class="info-item-label">WhatsApp</div><div class="info-item-value" id="wa-display">(88) 9 0000-0000</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9993</div>
+          <div><div class="info-item-label">E-mail</div><div class="info-item-value" id="email-display">danbarbeiro@email.com</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="agenda-status available" id="agenda-status">
+          <div class="status-dot available" id="status-dot"></div>
+          <span id="status-text">Agenda aberta vagas disponÃ­veis para hoje</span>
+        </div>
+        <div class="form-row">
+          <label>Seu nome</label>
+          <input type="text" id="book-name" placeholder="Digite aqui">
+        </div>
+        <div class="form-row">
+          <label>WhatsApp</label>
+          <input type="tel" id="book-phone" placeholder="(88) 9 0000-0000">
+        </div>
+        <div class="form-two">
+          <div class="form-row">
+            <label>Serviços</label>
+            <select id="book-service">
+              <option value="">Selecionar...</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Data preferida</label>
+            <input type="date" id="book-date" min="">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Obrservações (opcional)</label>
+          <input type="text" id="book-obs" placeholder="Ex: prefiro as 10h, estilo especifico...">
+        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;" onclick="handleBooking()">Confirmar agendamento</button>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:0.75rem;text-align:center;">Você receberá a confirmação via WhatsApp</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="section-tag">Feedback¦ O que dizem os clientes</div>
+  <h2 class="section-title">REVIEWS</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+    <div class="testimonial-stars">João Querino</div>
+      <p class="testimonial-text">"Melhor barbearia da cidade. O Dan tem um talento incrÃ­vel, sempre saio satisfeito com o corte. Recomendo demais!"</p>
+      <div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">Marcos Vieira</div><div class="author-since">Cliente desde 2023</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">Rafael Costa</div>
+      <p class="testimonial-text">"Atendimento top, ambiente estiloso e o corte ficou exatamente como eu queria. Sem dÃºvida minha barbearia favorita."</p>
+      <div class="testimonial-author"><div class="author-avatar">R</div><div><div class="author-name">Rafael Costa</div><div class="author-since">Cliente desde 2022</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">Lucas Almeida</div>
+      <p class="testimonial-text">"O pacote VIP vale cada centavo. SaÃ­ de lÃ¡ completamente transformado. Profissional demais, vou sempre voltar!"</p>
+      <div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Lucas Almeida</div><div class="author-since">Cliente desde 2024</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#hero" class="logo">Dan<span>Barbeiro</span></a>
+        <p>Uma barbearia urbana em Jamacaru. Cortes modernos, atendimento de qualidade e um espaço feito pra você se sentir no seu melhor.</p>
+      </div>
+      <div class="footer-col">
+        <h4>ServiÃ§os</h4>
+        <ul id="footer-services"></ul>
+      </div>
+      <div class="footer-col">
+        <h4>LocalizaÃ§Ã£o</h4>
+        <ul>
+          <li><span>Jamacaru, CE</span></li>
+          <li><span>Seg a Sab: 9h as 20h</span></li>
+          <li><span>Domingo: Geralmente fechado</span></li>
+          <li><a href="#agendamento-wrap">Agendar online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 DanBarbeiro ” Todos os direitos reservados | <a href="adm.html" style="color:var(--muted);text-decoration:none;font-size:0.75rem;">ADM</a></p>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Instagram">IG</a>
+        <a href="#" class="social-link" title="WhatsApp">WA</a>
+        <a href="#" class="social-link" title="TikTok">TK</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="main.js"></script>
+<script>
+  const DEFAULT_SERVICES = [
+    { id:1, name:'Corte Clássico', desc:'Tesoura, máquina ou degradê. O básico feito com excelência.', icon:'✂', price:30 },
+    { id:2, name:'Corte + Barba', desc:'Combo completo. Acabamento impecável do cabelo à barba.', icon:'▲', price:55 },
+    { id:3, name:'Degradê', desc:'Fade suave ou americano. Transições perfeitas no detalhe.', icon:'◈', price:40 },
+    { id:4, name:'Barba', desc:'Modelagem, acabamento e hidratação. Barba do jeito certo.', icon:'◆', price:25 },
+    { id:5, name:'Pacote VIP', desc:'Corte + barba + sobrancelha + hidratação capilar.', icon:'✦', price:80 },
+    { id:6, name:'Sobrancelha', desc:'Desenho e modelagem. Acabamento que transforma o visual.', icon:'⬡', price:15 }
+  ];
+
+  function getServices() {
+    const stored = load('db_services', []);
+    return DEFAULT_SERVICES.map(def => ({ ...def, ...(stored.find(item => item.id === def.id) || {}) }));
+  }
+
+  function renderServices() {
+    const services = getServices();
+    const grid = document.getElementById('services-grid');
+    const sel = document.getElementById('book-service');
+    const footerServices = document.getElementById('footer-services');
+
+    grid.innerHTML = services.map(s => `
+      <div class="service-card">
+        <div class="service-icon">${s.icon || '✦'}</div>
+        <div class="service-name">${s.name}</div>
+        <div class="service-desc">${s.desc || 'Serviço especial da barbearia.'}</div>
+        <div class="service-price">R$ ${Number(s.price).toFixed(0)} <span>/ sessão</span></div>
+      </div>`).join('');
+
+    sel.innerHTML = '<option value="">Selecionar...</option>' +
+      services.map(s => `<option value="${s.name} — R$ ${Number(s.price).toFixed(0)}">${s.name} — R$ ${Number(s.price).toFixed(0)}</option>`).join('');
+
+    if (footerServices) {
+      footerServices.innerHTML = services.map(s => `<li><a href="#agendamento-wrap">${s.name}</a></li>`).join('');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderServices();
+    window.addEventListener('storage', event => {
+      if (event.key === 'db_services') renderServices();
+    });
+  });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DanBarbeiro Painel ADM</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="adm.css">
+
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Dan<span>Barbeiro</span></div>
+    <div class="login-sub">Painel Administrativo</div>
+    <div class="form-group">
+      <label>usuario</label>
+      <input type="text" id="login-user" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Entrar no painel</button>
+    <div class="login-error" id="login-error">Usuario ou senha incorretos.</div>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.5rem;text-align:center;">Padrão: admin / dan2024</p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-panel">
+  <header class="adm-header">
+    <div style="display:flex;align-items:center;">
+      <div class="adm-logo">Dan<span>Barbeiro</span></div>
+      <div class="adm-badge">ADM</div>
+    </div>
+    <div class="adm-actions">
+      <a href="index.html" target="_blank" class="btn-sm btn-outline-sm">Ver site</a>
+      <button class="btn-sm btn-danger-sm" onclick="doLogout()">Sair</button>
+    </div>
+  </header>
+
+  <div class="adm-body">
+    <aside class="adm-sidebar">
+      <div class="nav-section">
+        <div class="nav-section-label">Geral</div>
+        <button class="nav-item active" onclick="showPage('dashboard')"><span class="nav-icon">Dashboard</button>
+        <button class="nav-item" onclick="showPage('agendamentos')"><span class="nav-icon"></span> Agendamentos</button>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Configurar site</div>
+        <button class="nav-item" onclick="showPage('servicos')"><span class="nav-icon"></span> Serviços e Preços</button>
+        <button class="nav-item" onclick="showPage('promocoes')"><span class="nav-icon"></span> Promoções</button>
+        <button class="nav-item" onclick="showPage('limite')"><span class="nav-icon"></span> Limite de Clientes</button>
+        <button class="nav-item" onclick="showPage('email')"><span class="nav-icon"></span> E-mail / Notif.</button>
+      </div>
+    </aside>
+
+    <main class="adm-content">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div class="page-tag">Visão geral</div>
+          <h1 class="page-title">DASHBOARD</h1>
+          <p class="page-sub">Resumo do dia e da semana.</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Agendamentos hoje</div>
+            <div class="metric-value" id="metric-hoje">0</div>
+            <div class="metric-sub" id="metric-limite-sub">Limite: vagas</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Vagas disponÃ­veis</div>
+            <div class="metric-value" id="metric-vagas">â€”</div>
+            <div class="metric-sub">Para hoje</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Total na semana</div>
+            <div class="metric-value" id="metric-semana">0</div>
+            <div class="metric-sub">Agendamentos</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Promoçoes ativas</div>
+            <div class="metric-value" id="metric-promos">0</div>
+            <div class="metric-sub">No site agora</div>
+          </div>
+        </div>
+        <h3 style="font-family:var(--font-head);letter-spacing:2px;font-size:1.3rem;margin-bottom:1rem;color:var(--text);">ÚLTIMOS AGENDAMENTOS</h3>
+        <div class="table-wrap">
+          <table id="recent-table">
+            <thead><tr><th>Cliente</th><th>Serviços</th><th>Data</th><th>Status</th></tr></thead>
+            <tbody id="recent-tbody">
+              <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:2rem;">Nenhum agendamento ainda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- AGENDAMENTOS -->
+      <div class="page" id="page-agendamentos">
+        <div class="page-header">
+          <div class="page-tag">Gerenciar</div>
+          <h1 class="page-title">AGENDAMENTOS</h1>
+          <p class="page-sub">Todos os agendamentos recebidos pelo site.</p>
+        </div>
+        <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center;">
+          <input type="date" id="filter-date" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px;font-family:var(--font-body);font-size:0.88rem;outline:none;" oninput="renderTable()">
+          <select id="filter-status" style="background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px;font-family:var(--font-body);font-size:0.88rem;outline:none;" onchange="renderTable()">
+            <option value="">Todos os status</option>
+            <option value="pendente">Pendente</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <div style="margin-left:auto;display:flex;gap:0.75rem;">
+            <button class="btn-sm btn-outline-sm" onclick="exportCSV()">Exportar CSV</button>
+            <button class="btn-sm btn-accent" onclick="exportCSV()">Baixar planilha</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cliente</th><th>WhatsApp</th><th>Serviços</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="main-tbody">
+              <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem;">Nenhum agendamento ainda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SERVIÃ‡OS -->
+      <div class="page" id="page-servicos">
+        <div class="page-header">
+          <div class="page-tag">Preços</div>
+          <h1 class="page-title">Serviços e Preços</h1>
+          <p class="page-sub">Edite os preços exibidos no site. As alterações são salvas localmente.</p>
+        </div>
+        <div class="services-list" id="services-list"></div>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;">
+          <button class="btn-sm btn-accent" onclick="saveServices()">Salvar preços</button>
+          <button class="btn-sm btn-outline-sm" onclick="resetServices()">Restaurar padrão</button>
+        </div>
+      </div>
+
+      <!-- PROMOÃ‡Ã•ES -->
+      <div class="page" id="page-promocoes">
+        <div class="page-header">
+          <div class="page-tag">¦ Ofertas</div>
+          <h1 class="page-title">Promoções</h1>
+          <p class="page-sub">Crie promoções que aparecem em destaque no site para atrair mais clientes.</p>
+        </div>
+        <div class="add-promo-form">
+          <div class="add-promo-title">Nova promoção</div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>Nome da promoção</label>
+              <input type="text" id="promo-nome" placeholder="Ex: Combo Verão">
+            </div>
+            <div class="field-group">
+              <label>Desconto / Novo Preço</label>
+              <input type="text" id="promo-desconto" placeholder="Ex: 30% OFF ou R$ 45">
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Descrição</label>
+            <textarea id="promo-desc" rows="2" placeholder="Ex: Corte + barba com 30% de desconto. Só esta semana!"></textarea>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>Válido até</label>
+              <input type="date" id="promo-validade">
+            </div>
+            <div class="field-group">
+              <label>Serviço relacionado</label>
+              <select id="promo-servico">
+                <option value="">Qualquer serviço</option>
+                <option>Corte Clássico</option>
+                <option>Corte + Barba</option>
+                <option>Degradê</option>
+                <option>Barba</option>
+                <option>Pacote VIP</option>
+                <option>Sobrancelha</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-sm btn-accent" onclick="addPromo()">Adicionar promoção</button>
+        </div>
+        <div class="promo-list" id="promo-list"></div>
+        <p style="font-size:0.78rem;color:var(--muted);" id="promo-empty">Nenhuma promoção cadastrada ainda. Crie a primeira acima!</p>
+      </div>
+
+      <!-- LIMITE -->
+      <div class="page" id="page-limite">
+        <div class="page-header">
+          <div class="page-tag">Capacidade</div>
+          <h1 class="page-title">LIMITE DIÁRIO</h1>
+          <p class="page-sub">Defina o número máximo de agendamentos por dia. Quando atingido, o site exibe "Agenda cheia".</p>
+        </div>
+        <div class="config-grid">
+          <div class="config-card">
+            <div class="config-card-title"><span></span> Clientes por dia</div>
+            <div class="limit-display" id="limit-display">8</div>
+            <div class="limit-controls">
+              <button class="limit-btn" onclick="changeLimit(-1)">-</button>
+              <input type="number" class="limit-input" id="limit-input" value="8" min="1" max="50" oninput="syncLimit(this.value)">
+              <button class="limit-btn" onclick="changeLimit(1)">+</button>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--muted);margin-top:1rem;">
+              <span>0 agendamentos hoje</span>
+              <span id="limit-remaining">8 vagas livres</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+            <button class="btn-sm btn-accent" style="margin-top:1.5rem;width:100%;" onclick="saveLimit()">Salvar limite</button>
+          </div>
+          <div class="config-card">
+            <div class="config-card-title"><span></span> configuração por dia da semana</div>
+            <div id="weekday-limits"></div>
+            <button class="btn-sm btn-accent" style="margin-top:1.25rem;" onclick="saveWeekdayLimits()">Salvar dias</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="page" id="page-email">
+        <div class="page-header">
+          <div class="page-tag">Notificações</div>
+          <h1 class="page-title">E-MAIL E NOTIFICAÇÕES</h1>
+          <p class="page-sub">Configure como você recebe os agendamentos dos clientes.</p>
+        </div>
+        <div class="config-grid">
+          <div class="config-card">
+            <div class="config-card-title"><span>✉</span> Configuração de e-mail</div>
+            <div class="field-group">
+              <label>Seu e-mail (para receber agendamentos)</label>
+              <input type="email" id="email-dest" placeholder="dan@email.com" value="">
+            </div>
+            <div class="field-group">
+              <label>Assunto do e-mail</label>
+              <input type="text" id="email-subject" value="Novo agendamento — DanBarbeiro">
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-label">Receber e-mail a cada agendamento</div>
+                <div class="toggle-desc">Uma notificação por agendamento recebido</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="toggle-email" checked><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-label">Resumo diário</div>
+                <div class="toggle-desc">Receber lista de agendamentos do dia às 8h</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="toggle-resumo"><span class="slider"></span></label>
+            </div>
+            <button class="btn-sm btn-accent" style="margin-top:1.25rem;" onclick="saveEmailConfig()">Salvar configuraÃ§Ãµes</button>
+            <div class="email-preview" id="email-preview">
+              <strong>Para:</strong> (configure seu e-mail acima)<br>
+              <strong>Assunto:</strong> Novo agendamento DanBarbeiro<br><br>
+              <strong>Nome:</strong> João Silva<br>
+              <strong>WhatsApp:</strong> (88) 9 9999-0000<br>
+              <strong>ServiÃ§o:</strong> Corte + Barba R$ 55<br>
+              <strong>Data:</strong> 28/04/2025<br>
+              <strong>Hora do agendamento:</strong> 14:32
+            </div>
+            <p style="font-size:0.78rem;color:var(--muted);margin-top:0.75rem;">
+              Para envio real de e-mail, integre com <strong style="color:var(--accent);">EmailJS</strong> ou <strong style="color:var(--accent);">Formspree</strong>.<br>
+              Adicione sua chave API no <code style="color:var(--accent);">index.html</code> na funÃ§Ã£o <code style="color:var(--accent);">handleBooking()</code>.
+            </p>
+          </div>
+          <div class="config-card">
+            <div class="config-card-title"><span></span> WhatsApp</div>
+            <div class="field-group">
+              <label>Número WhatsApp da barbearia</label>
+              <input type="tel" id="whatsapp-num" placeholder="5588900000000" value="5588900000000">
+            </div>
+            <div class="field-group">
+              <label>Mensagem padrão do cliente</label>
+              <textarea id="whatsapp-msg" rows="3">Olá! Sou {nome} e gostaria de agendar: {servico}.</textarea>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-label">Agendamento via WhatsApp</div>
+                <div class="toggle-desc">Botão redireciona para WhatsApp</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="toggle-wa" checked><span class="slider"></span></label>
+            </div>
+            <button class="btn-sm btn-accent" style="margin-top:1.25rem;" onclick="saveWhatsApp()">Salvar WhatsApp</button>
+            <div style="margin-top:1.5rem;">
+              <div class="config-card-title" style="font-size:1rem;"><span>➤</span> Exportar agendamentos</div>
+              <div class="export-section">
+                <button class="btn-sm btn-outline-sm" onclick="exportCSV()">CSV (Excel)</button>
+                <button class="btn-sm btn-outline-sm" onclick="exportJSON()">JSON</button>
+                <button class="btn-sm btn-outline-sm" onclick="printAgendamentos()">Imprimir lista</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script src="adm.js"></script>
+</body>
+</html>
+
