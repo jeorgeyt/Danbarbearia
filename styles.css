@@ -171,10 +171,26 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
 .social-link { width: 36px; height: 36px; border: 1px solid var(--border); display: grid; place-items: center; color: var(--muted); text-decoration: none; font-size: 0.8rem; border-radius: 2px; transition: all 0.2s; }
 .social-link:hover { border-color: var(--accent); color: var(--accent); }
 
-/* TOAST */
-.toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--accent); color: var(--black); padding: 12px 24px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; z-index: 999; transform: translateY(100px); opacity: 0; transition: all 0.3s; }
-.toast.show { transform: translateY(0); opacity: 1; }
-.toast.error { background: var(--danger); color: #fff; }
+/* CALENDÁRIO COM INDICADORES DE DISPONIBILIDADE */
+.calendar-day-full {
+  background-color: #e74c3c !important;
+  color: white !important;
+}
+
+.calendar-day-available {
+  background-color: #27ae60 !important;
+  color: white !important;
+}
+
+/* Melhorar aparência do select de horário */
+#book-time option:disabled {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+#book-time option:not([disabled]) {
+  color: #27ae60;
+}
 
 /* ANIMS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }

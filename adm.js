@@ -99,7 +99,7 @@ function renderTable() {
   if (statusFilter) data = data.filter(a => a.status === statusFilter);
   const tbody = document.getElementById('main-tbody');
   if (data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem;">Nenhum agendamento encontrado.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:2rem;">Nenhum agendamento encontrado.</td></tr>';
     return;
   }
   tbody.innerHTML = data.map((a, i) => `
@@ -108,6 +108,7 @@ function renderTable() {
       <td><a href="https://wa.me/${a.phone.replace(/\D/g,'')}" target="_blank" style="color:var(--accent);text-decoration:none;">${a.phone}</a></td>
       <td>${a.service}</td>
       <td>${formatDate(a.date)}</td>
+      <td>${a.time || '—'}</td>
       <td><span class="badge badge-${a.status}">${a.status}</span></td>
       <td>
         <div style="display:flex;gap:6px;">

@@ -129,6 +129,7 @@
         </div>
       </div>
       <div>
+        <label>Atenção: Antes de escolher um horário, escolha uma data.</label>
         <div class="agenda-status available" id="agenda-status">
           <div class="status-dot available" id="status-dot"></div>
           <span id="status-text">Agenda aberta vagas disponÃ­veis para hoje</span>
@@ -149,13 +150,19 @@
             </select>
           </div>
           <div class="form-row">
-            <label>Data preferida</label>
-            <input type="date" id="book-date" min="">
+            <label>Horário</label>
+            <select id="book-time">
+              <option value="">Selecionar...</option>
+            </select>
           </div>
         </div>
         <div class="form-row">
-          <label>Obrservações (opcional)</label>
-          <input type="text" id="book-obs" placeholder="Ex: prefiro as 10h, estilo especifico...">
+          <label>Data preferida</label>
+          <input type="date" id="book-date" min="">
+        </div>
+        <div class="form-row">
+          <label>Observações</label>
+          <textarea id="book-obs" placeholder="Diga se tem algo especial" style="min-height:80px;padding:12px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font-size:0.95rem;width:100%;resize:vertical"></textarea>
         </div>
         <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;" onclick="handleBooking()">Confirmar agendamento</button>
         <p style="font-size:0.75rem;color:var(--muted);margin-top:0.75rem;text-align:center;">Você receberá a confirmação via WhatsApp</p>
